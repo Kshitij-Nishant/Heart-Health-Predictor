@@ -47,12 +47,13 @@ def predict(
     }])
 
     prob = pipeline.predict_proba(input_df)[0,1]
+    prediction = round(prob * 100, 2)
 
     return templates.TemplateResponse(
         "index.html",
         {
             "request": request,
-            "prediction": round(float(prob), 3),
+            "prediction": prediction,
             "risk": "High Risk" if prob >= 0.5 else "Low Risk"
         }
     )

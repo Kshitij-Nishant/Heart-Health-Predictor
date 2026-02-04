@@ -94,6 +94,20 @@
             color: #69f0ae;
             font-weight: bold;
         }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .reset-btn {
+            background: #444;
+            color: #fff;
+        }
+
+        .reset-btn:hover {
+            background: #666;
+        }
     </style>
 </head>
 
@@ -172,12 +186,15 @@
             <input type="number" step="0.1" name="oldpeak" required>
         </div>
 
-        <button type="submit">Predict Risk</button>
+        <div class="btn-group">
+            <button type="submit">Predict Risk</button>
+            <button type="reset" class="reset-btn">Reset</button>
+        </div>
     </form>
 
     {% if prediction %}
     <div class="result">
-        <p><strong>Risk Probability:</strong> {{ prediction }}</p>
+        <p><strong>Risk Probability:</strong> {{ prediction }} %</p>
         <p class="{{ 'risk-high' if risk == 'High Risk' else 'risk-low' }}">
             {{ risk }}
         </p>
